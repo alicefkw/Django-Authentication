@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from users.forms import UserRegistrationForm
 
+from django.contrib.auth.models import User
+
 def home(request):
-    return render(request, 'index.html')
+    users = User.objects.all()
+    context = {'users': users}
+    return render(request, 'index.html', context)
 
 def login(request):
     return render(request, 'login.html')
